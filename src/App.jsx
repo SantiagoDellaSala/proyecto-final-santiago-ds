@@ -7,11 +7,14 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AgregarProducto from "./components/AgregarProducto";
 import AdminDashboard from "./components/AdminDashboard";
 import { AuthProvider } from "./context/AuthContext";
+import ToastConfig from "./components/ToastConfig"; // ✅ Toastify container
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        {/* ToastContainer visible en todas las rutas */}
+        <ToastConfig /> {/* ✅ insertado fuera de Routes */}
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />

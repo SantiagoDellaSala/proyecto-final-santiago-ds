@@ -1,9 +1,9 @@
+// AdminDashboard.jsx actualizado con react-toastify
 import { useEffect, useState } from "react";
 import {
   Card,
   Button,
   Modal,
-  Alert,
   Spinner,
   Row,
   Col,
@@ -11,14 +11,13 @@ import {
 } from "react-bootstrap";
 import EditarProductoModal from "./EditarProductoModal";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AdminDashboard = () => {
   const [productos, setProductos] = useState([]);
   const [productoAEditar, setProductoAEditar] = useState(null);
   const [mostrarModal, setMostrarModal] = useState(false);
   const [cargando, setCargando] = useState(true);
-  const [error, setError] = useState("");
-  const [mensaje, setMensaje] = useState("");
   const [confirmarEliminar, setConfirmarEliminar] = useState(null);
 
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ const AdminDashboard = () => {
       const data = await res.json();
       setProductos(data);
     } catch (err) {
-      setError(err.message);
+      toast.error("No se pudo obtener los productos.");
     } finally {
       setCargando(false);
     }
@@ -48,11 +47,10 @@ const AdminDashboard = () => {
       if (!res.ok) throw new Error("Error al eliminar producto");
 
       setProductos((prev) => prev.filter((prod) => prod.id !== id));
-      setMensaje("Producto eliminado correctamente.");
+      toast.success("Producto eliminado correctamente.");
       setConfirmarEliminar(null);
-      setTimeout(() => setMensaje(""), 3000);
     } catch (err) {
-      setError("No se pudo eliminar el producto.");
+      toast.error("No se pudo eliminar el producto.");
     }
   };
 
@@ -71,8 +69,7 @@ const AdminDashboard = () => {
       prev.map((p) => (p.id === actualizado.id ? actualizado : p))
     );
     cerrarModal();
-    setMensaje("Producto actualizado correctamente.");
-    setTimeout(() => setMensaje(""), 3000);
+    toast.success("Producto actualizado correctamente.");
   };
 
   return (
@@ -87,9 +84,6 @@ const AdminDashboard = () => {
         Agregar Producto
       </Button>
 
-      {mensaje && <Alert variant="success">{mensaje}</Alert>}
-      {error && <Alert variant="danger">{error}</Alert>}
-
       {cargando ? (
         <div className="text-center">
           <Spinner animation="border" />
@@ -102,16 +96,16 @@ const AdminDashboard = () => {
             <Col key={prod.id} xs={12} sm={6} md={4} lg={3}>
               <Card className="h-100 shadow-sm">
                 <Card.Img
-  variant="top"
-  src={`/img/${prod.imagen || "default.jpg"}`}
-  alt={prod.nombre}
-  className="img-fluid"
-  style={{
-    height: "180px",
-    objectFit: "contain",
-    backgroundColor: "#f8f9fa",
-  }}
-/>
+                  variant="top"
+                  src={`/img/${prod.imagen || "default.jpg"}`}
+                  alt={prod.nombre}
+                  className="img-fluid"
+                  style={{
+                    height: "180px",
+                    objectFit: "contain",
+                    backgroundColor: "#f8f9fa",
+                  }}
+                />
 
                 <Card.Body>
                   <Card.Title className="text-truncate">

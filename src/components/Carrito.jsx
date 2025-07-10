@@ -3,12 +3,12 @@ import {
   Button,
   Table,
   Container,
-  Alert,
   ButtonGroup,
   Card,
   Row,
   Col,
 } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const Carrito = () => {
   const {
@@ -22,17 +22,24 @@ const Carrito = () => {
   const calcularTotal = () =>
     carrito.reduce((total, item) => total + item.precio * item.cantidad, 0);
 
+  const handleVaciarCarrito = () => {
+    vaciarCarrito();
+    toast.info("Carrito vaciado");
+  };
+
+  const handleQuitarItem = (id) => {
+    quitarDelCarrito(id);
+    toast.warn("Producto quitado del carrito");
+  };
+
   return (
     <Container className="py-5">
       <h2 className="mb-4 text-center">🛒 Tu Carrito de Compras</h2>
 
       {carrito.length === 0 ? (
-        <Alert variant="info" className="text-center">
-          No hay productos en el carrito.
-        </Alert>
+        <div className="text-center text-muted">No hay productos en el carrito.</div>
       ) : (
         <>
-          {/* Vista en pantallas grandes */}
           <div className="d-none d-md-block">
             <Card className="p-3 shadow-sm">
               <Table responsive hover className="align-middle">
@@ -87,7 +94,7 @@ const Carrito = () => {
                         <Button
                           variant="danger"
                           size="sm"
-                          onClick={() => quitarDelCarrito(item.id)}
+                          onClick={() => handleQuitarItem(item.id)}
                         >
                           Quitar
                         </Button>
@@ -97,7 +104,7 @@ const Carrito = () => {
                 </tbody>
               </Table>
               <div className="d-flex justify-content-between align-items-center mt-3">
-                <Button variant="outline-danger" onClick={vaciarCarrito}>
+                <Button variant="outline-danger" onClick={handleVaciarCarrito}>
                   Vaciar carrito
                 </Button>
                 <h4>Total: ${calcularTotal().toFixed(2)}</h4>
@@ -105,7 +112,6 @@ const Carrito = () => {
             </Card>
           </div>
 
-          {/* Vista en móviles */}
           <div className="d-block d-md-none">
             <Row className="g-3">
               {carrito.map((item) => (
@@ -153,7 +159,7 @@ const Carrito = () => {
                             <Button
                               variant="danger"
                               size="sm"
-                              onClick={() => quitarDelCarrito(item.id)}
+                              onClick={() => handleQuitarItem(item.id)}
                             >
                               Quitar
                             </Button>
@@ -166,7 +172,7 @@ const Carrito = () => {
               ))}
               <Col xs={12} className="text-center mt-4">
                 <h5>Total: ${calcularTotal().toFixed(2)}</h5>
-                <Button variant="outline-danger" onClick={vaciarCarrito}>
+                <Button variant="outline-danger" onClick={handleVaciarCarrito}>
                   Vaciar carrito
                 </Button>
               </Col>
