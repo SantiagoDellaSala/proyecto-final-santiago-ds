@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
-import { Table, Button, Modal, Alert, Spinner } from "react-bootstrap";
+import {
+  Card,
+  Button,
+  Modal,
+  Alert,
+  Spinner,
+  Row,
+  Col,
+  Container,
+} from "react-bootstrap";
 import EditarProductoModal from "./EditarProductoModal";
-// ... imports sin cambios
 import { useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
@@ -10,7 +18,7 @@ const AdminDashboard = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
-  const [mensaje, setMensaje] = useState(""); // ✅ nuevo
+  const [mensaje, setMensaje] = useState("");
   const [confirmarEliminar, setConfirmarEliminar] = useState(null);
 
   const navigate = useNavigate();
@@ -42,8 +50,7 @@ const AdminDashboard = () => {
       setProductos((prev) => prev.filter((prod) => prod.id !== id));
       setMensaje("Producto eliminado correctamente.");
       setConfirmarEliminar(null);
-
-      setTimeout(() => setMensaje(""), 3000); // ✅ ocultar mensaje luego de 3s
+      setTimeout(() => setMensaje(""), 3000);
     } catch (err) {
       setError("No se pudo eliminar el producto.");
     }
@@ -65,14 +72,18 @@ const AdminDashboard = () => {
     );
     cerrarModal();
     setMensaje("Producto actualizado correctamente.");
-    setTimeout(() => setMensaje(""), 3000); // ✅ ocultar luego de 3s
+    setTimeout(() => setMensaje(""), 3000);
   };
 
   return (
-    <div className="container py-5">
+    <Container className="py-5">
       <h2 className="mb-4">Panel de Administración</h2>
 
-      <Button variant="success" className="mb-3" onClick={() => navigate("/admin/agregar")}>
+      <Button
+        variant="success"
+        className="mb-4"
+        onClick={() => navigate("/admin/agregar")}
+      >
         Agregar Producto
       </Button>
 
@@ -86,52 +97,63 @@ const AdminDashboard = () => {
       ) : productos.length === 0 ? (
         <p>No hay productos cargados.</p>
       ) : (
-        <Table striped bordered hover responsive>
-          <thead>
-            <tr>
-              <th>Imagen</th>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Descripción</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {productos.map((prod) => (
-              <tr key={prod.id}>
-                <td>
-                  <img
-                    src={`/img/${prod.imagen || "default.jpg"}`}
-                    alt={prod.nombre}
-                    width={60}
-                    height={60}
-                    style={{ objectFit: "cover" }}
-                  />
-                </td>
-                <td>{prod.nombre}</td>
-                <td>${prod.precio}</td>
-                <td>{prod.descripcion}</td>
-                <td>
-                  <Button
-                    variant="warning"
-                    size="sm"
-                    className="me-2"
-                    onClick={() => abrirEditar(prod)}
+        <Row className="g-4">
+          {productos.map((prod) => (
+            <Col key={prod.id} xs={12} sm={6} md={4} lg={3}>
+              <Card className="h-100 shadow-sm">
+                <Card.Img
+  variant="top"
+  src={`/img/${prod.imagen || "default.jpg"}`}
+  alt={prod.nombre}
+  className="img-fluid"
+  style={{
+    height: "180px",
+    objectFit: "contain",
+    backgroundColor: "#f8f9fa",
+  }}
+/>
+
+                <Card.Body>
+                  <Card.Title className="text-truncate">
+                    {prod.nombre}
+                  </Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    ${prod.precio.toFixed(2)}
+                  </Card.Subtitle>
+                  <Card.Text
+                    style={{
+                      maxHeight: "4.5em",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
                   >
-                    Editar
-                  </Button>
-                  <Button
-                    variant="danger"
-                    size="sm"
-                    onClick={() => setConfirmarEliminar(prod.id)}
-                  >
-                    Eliminar
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+                    {prod.descripcion}
+                  </Card.Text>
+                  <div className="d-flex justify-content-between gap-2 mt-3 flex-wrap">
+                    <Button
+                      variant="warning"
+                      size="sm"
+                      className="flex-fill"
+                      onClick={() => abrirEditar(prod)}
+                      aria-label={`Editar ${prod.nombre}`}
+                    >
+                      Editar
+                    </Button>
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      className="flex-fill"
+                      onClick={() => setConfirmarEliminar(prod.id)}
+                      aria-label={`Eliminar ${prod.nombre}`}
+                    >
+                      Eliminar
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
       )}
 
       {/* Modal de edición */}
@@ -152,9 +174,14 @@ const AdminDashboard = () => {
         <Modal.Header closeButton>
           <Modal.Title>Confirmar Eliminación</Modal.Title>
         </Modal.Header>
-        <Modal.Body>¿Estás seguro de que querés eliminar este producto?</Modal.Body>
+        <Modal.Body>
+          ¿Estás seguro de que querés eliminar este producto?
+        </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setConfirmarEliminar(null)}>
+          <Button
+            variant="secondary"
+            onClick={() => setConfirmarEliminar(null)}
+          >
             Cancelar
           </Button>
           <Button
@@ -165,7 +192,7 @@ const AdminDashboard = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </Container>
   );
 };
 

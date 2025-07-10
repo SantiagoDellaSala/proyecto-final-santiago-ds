@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductoCard from "./ProductoCard";
-import { Row, Col, Spinner, Alert } from "react-bootstrap";
+import { Row, Col, Spinner, Alert, Container } from "react-bootstrap";
 
 const Home = () => {
   const [productos, setProductos] = useState([]);
@@ -14,7 +14,6 @@ const Home = () => {
         if (!res.ok) throw new Error("Error al cargar productos");
         const data = await res.json();
         setProductos(data);
-        console.log(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -26,28 +25,39 @@ const Home = () => {
   }, []);
 
   return (
-    <main className="container py-5">
-      <h1 className="mb-4">Bienvenido a Xnegg Shop</h1>
-
-      {cargando && (
-        <div className="d-flex justify-content-center">
-          <Spinner animation="border" variant="primary" />
+    <main className="py-5">
+      <Container>
+        <div className="text-center mb-5">
+          <h1 className="fw-bold">Bienvenido a Xnegg Shop</h1>
+          <p className="text-muted">
+            Descubrí nuestros productos exclusivos.
+          </p>
         </div>
-      )}
 
-      {error && <Alert variant="danger">{error}</Alert>}
+        {cargando && (
+          <div className="d-flex justify-content-center">
+            <Spinner animation="border" variant="primary" />
+          </div>
+        )}
 
-      {!cargando && !error && productos.length === 0 && (
-        <p>No hay productos disponibles.</p>
-      )}
+        {error && (
+          <Alert variant="danger" className="text-center">
+            {error}
+          </Alert>
+        )}
 
-      <Row className="g-3">
-        {productos.map((producto) => (
-          <Col key={producto.id} xs={12} sm={6} md={4} lg={3}>
-            <ProductoCard producto={producto} />
-          </Col>
-        ))}
-      </Row>
+        {!cargando && !error && productos.length === 0 && (
+          <p className="text-center">No hay productos disponibles.</p>
+        )}
+
+        <Row className="g-4">
+          {productos.map((producto) => (
+            <Col key={producto.id} xs={12} sm={6} md={4} lg={3}>
+              <ProductoCard producto={producto} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
     </main>
   );
 };
