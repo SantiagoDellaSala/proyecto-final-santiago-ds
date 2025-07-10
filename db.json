@@ -1,0 +1,18 @@
+{
+  "productos": [
+    {
+      "id": "f10d",
+      "nombre": "Playstation 5",
+      "precio": 1200000,
+      "descripcion": "Consola marca Sony, Playstation 5",
+      "imagen": "producto_1.jpg"
+    },
+    {
+      "id": "0cff",
+      "nombre": "Playstation 5 (2)",
+      "precio": 1199999,
+      "descripcion": "Esta play esta copadaaaaaa",
+      "imagen": "producto_1.jpg"
+    }
+  ]
+}

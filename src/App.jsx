@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Carrito from "./components/Carrito";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AgregarProducto from "./components/AgregarProducto";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/admin/agregar" element={<AgregarProducto />} />
         </Route>
       </Routes>
     </BrowserRouter>
