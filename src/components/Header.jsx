@@ -6,7 +6,12 @@ const Header = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center gap-2">
+          <img
+            src="/logo.png"
+            alt="logo"
+            style={{ width: "30px", height: "30px", objectFit: "contain" }}
+          />
           Xnegg Shop
         </Navbar.Brand>
         <Nav className="ms-auto d-flex align-items-center gap-3">
