@@ -4,18 +4,20 @@ const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
-const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
 
-  // Si hay datos en localStorage, cargarlos
+  // Al iniciar, cargar usuario desde localStorage si existe
   useEffect(() => {
-    const user = localStorage.getItem("usuario");
-    if (user) setUsuario(JSON.parse(user));
+    const usuarioStorage = localStorage.getItem("usuario");
+    if (usuarioStorage) {
+      setUsuario(JSON.parse(usuarioStorage));
+    }
   }, []);
 
-  const login = (datosUsuario) => {
-    setUsuario(datosUsuario);
-    localStorage.setItem("usuario", JSON.stringify(datosUsuario));
+  const login = (usuarioData) => {
+    setUsuario(usuarioData);
+    localStorage.setItem("usuario", JSON.stringify(usuarioData));
   };
 
   const logout = () => {
@@ -29,5 +31,3 @@ const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export default AuthProvider;
