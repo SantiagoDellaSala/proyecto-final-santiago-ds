@@ -20,21 +20,33 @@ const Header = () => {
         >
           <img
             src="/logo.png"
-            alt="logo"
+            alt="Logo de Xnegg Shop"
             style={{ width: "30px", height: "30px", objectFit: "contain" }}
           />
           Xnegg Shop
         </Navbar.Brand>
         <Nav className="ms-auto d-flex align-items-center gap-3">
           {usuario && (
-            <Link to="/admin" className="text-light">
+            <Link
+              to="/admin"
+              className="text-light"
+              aria-label="Panel de administración"
+            >
               <BsGear size={22} />
             </Link>
           )}
-          <Link to="/login" className="text-light">
+          <Link
+            to="/login"
+            className="text-light"
+            aria-label="Página de inicio de sesión"
+          >
             <BsPersonCircle size={24} />
           </Link>
-          <Link to="/carrito" className="position-relative text-light">
+          <Link
+            to="/carrito"
+            className="position-relative text-light"
+            aria-label="Ver carrito de compras"
+          >
             <BsCart3 size={24} />
             {cantidadTotal > 0 && (
               <Badge

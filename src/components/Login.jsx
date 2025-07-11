@@ -9,6 +9,7 @@ import {
   Card,
 } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const { usuario, login, logout } = useAuth();
@@ -31,14 +32,25 @@ const Login = () => {
   if (usuario) {
     return (
       <Container className="py-5">
+        <Helmet>
+          <title>Mi Cuenta - Xnegg Shop</title>
+          <meta name="description" content="Gestión de sesión para usuarios registrados en Xnegg Shop" />
+        </Helmet>
+
         <Row className="justify-content-center">
           <Col md={6} lg={4} className="text-center">
-            <h5>Hola, <strong>{usuario.nombre}</strong></h5>
+            <h5 aria-live="polite">
+              Hola, <strong>{usuario.nombre}</strong>
+            </h5>
             <div className="d-grid mt-3">
-              <Button variant="secondary" onClick={() => {
-                logout();
-                toast.info("Sesión cerrada");
-              }}>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  logout();
+                  toast.info("Sesión cerrada");
+                }}
+                aria-label="Cerrar sesión"
+              >
                 Cerrar sesión
               </Button>
             </div>
@@ -50,6 +62,11 @@ const Login = () => {
 
   return (
     <Container className="py-5">
+      <Helmet>
+        <title>Iniciar sesión - Xnegg Shop</title>
+        <meta name="description" content="Accedé a tu cuenta para gestionar productos y realizar compras en Xnegg Shop." />
+      </Helmet>
+
       <Row className="justify-content-center">
         <Col xs={12} md={8} lg={5}>
           <Card className="p-4 shadow-sm">
@@ -78,7 +95,7 @@ const Login = () => {
                 />
               </Form.Group>
               <div className="d-grid">
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" aria-label="Enviar formulario de inicio de sesión">
                   Iniciar sesión
                 </Button>
               </div>
@@ -91,3 +108,4 @@ const Login = () => {
 };
 
 export default Login;
+

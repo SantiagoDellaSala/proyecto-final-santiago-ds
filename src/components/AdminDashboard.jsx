@@ -1,4 +1,3 @@
-// AdminDashboard.jsx actualizado con react-toastify
 import { useEffect, useState } from "react";
 import {
   Card,
@@ -12,6 +11,7 @@ import {
 import EditarProductoModal from "./EditarProductoModal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const AdminDashboard = () => {
   const [productos, setProductos] = useState([]);
@@ -74,22 +74,31 @@ const AdminDashboard = () => {
 
   return (
     <Container className="py-5">
+      <Helmet>
+        <title>Panel de Administración - Xnegg Shop</title>
+        <meta
+          name="description"
+          content="Panel de administración para gestionar los productos de Xnegg Shop. Editá, eliminá o agregá productos fácilmente."
+        />
+      </Helmet>
+
       <h2 className="mb-4">Panel de Administración</h2>
 
       <Button
         variant="success"
         className="mb-4"
         onClick={() => navigate("/admin/agregar")}
+        aria-label="Agregar un nuevo producto"
       >
         Agregar Producto
       </Button>
 
       {cargando ? (
-        <div className="text-center">
+        <div className="text-center" role="status" aria-live="polite">
           <Spinner animation="border" />
         </div>
       ) : productos.length === 0 ? (
-        <p>No hay productos cargados.</p>
+        <p role="alert" className="text-muted">No hay productos cargados.</p>
       ) : (
         <Row className="g-4">
           {productos.map((prod) => (
@@ -98,7 +107,7 @@ const AdminDashboard = () => {
                 <Card.Img
                   variant="top"
                   src={`/img/${prod.imagen || "default.jpg"}`}
-                  alt={prod.nombre}
+                  alt={`Imagen de ${prod.nombre}`}
                   className="img-fluid"
                   style={{
                     height: "180px",
@@ -106,7 +115,6 @@ const AdminDashboard = () => {
                     backgroundColor: "#f8f9fa",
                   }}
                 />
-
                 <Card.Body>
                   <Card.Title className="text-truncate">
                     {prod.nombre}
@@ -129,7 +137,7 @@ const AdminDashboard = () => {
                       size="sm"
                       className="flex-fill"
                       onClick={() => abrirEditar(prod)}
-                      aria-label={`Editar ${prod.nombre}`}
+                      aria-label={`Editar producto ${prod.nombre}`}
                     >
                       Editar
                     </Button>
@@ -138,7 +146,7 @@ const AdminDashboard = () => {
                       size="sm"
                       className="flex-fill"
                       onClick={() => setConfirmarEliminar(prod.id)}
-                      aria-label={`Eliminar ${prod.nombre}`}
+                      aria-label={`Eliminar producto ${prod.nombre}`}
                     >
                       Eliminar
                     </Button>
@@ -150,23 +158,14 @@ const AdminDashboard = () => {
         </Row>
       )}
 
-      {/* Modal de edición */}
-      {mostrarModal && productoAEditar && (
-        <EditarProductoModal
-          producto={productoAEditar}
-          onClose={cerrarModal}
-          onUpdate={actualizarProducto}
-        />
-      )}
-
-      {/* Modal de confirmación para eliminar */}
       <Modal
         show={!!confirmarEliminar}
         onHide={() => setConfirmarEliminar(null)}
         centered
+        aria-labelledby="titulo-modal-eliminar"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Confirmar Eliminación</Modal.Title>
+          <Modal.Title id="titulo-modal-eliminar">Confirmar Eliminación</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           ¿Estás seguro de que querés eliminar este producto?
@@ -175,17 +174,27 @@ const AdminDashboard = () => {
           <Button
             variant="secondary"
             onClick={() => setConfirmarEliminar(null)}
+            aria-label="Cancelar eliminación"
           >
             Cancelar
           </Button>
           <Button
             variant="danger"
             onClick={() => eliminarProducto(confirmarEliminar)}
+            aria-label="Confirmar eliminación del producto"
           >
             Eliminar
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {mostrarModal && productoAEditar && (
+        <EditarProductoModal
+          producto={productoAEditar}
+          onClose={cerrarModal}
+          onUpdate={actualizarProducto}
+        />
+      )}
     </Container>
   );
 };

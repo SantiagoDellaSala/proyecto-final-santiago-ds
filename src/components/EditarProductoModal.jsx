@@ -81,30 +81,46 @@ const EditarProductoModal = ({ producto, onClose, onUpdate }) => {
   };
 
   return (
-    <Modal show={true} onHide={onClose} centered>
+    <Modal
+      show={true}
+      onHide={onClose}
+      centered
+      aria-labelledby="editar-producto-titulo"
+    >
       <Modal.Header closeButton>
-        <Modal.Title>Editar Producto</Modal.Title>
+        <Modal.Title id="editar-producto-titulo">Editar Producto</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {error && <Alert variant="danger">{error}</Alert>}
-        {exito && <Alert variant="success">{exito}</Alert>}
+        {error && (
+          <Alert variant="danger" role="alert" aria-live="assertive">
+            {error}
+          </Alert>
+        )}
+        {exito && (
+          <Alert variant="success" role="alert" aria-live="polite">
+            {exito}
+          </Alert>
+        )}
 
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label>Nombre</Form.Label>
+            <Form.Label htmlFor="editar-nombre">Nombre</Form.Label>
             <Form.Control
+              id="editar-nombre"
               type="text"
               name="nombre"
               value={formData.nombre}
               onChange={handleChange}
               required
               disabled={loading}
+              aria-label="Nombre del producto"
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Precio</Form.Label>
+            <Form.Label htmlFor="editar-precio">Precio</Form.Label>
             <Form.Control
+              id="editar-precio"
               type="number"
               name="precio"
               value={formData.precio}
@@ -112,12 +128,14 @@ const EditarProductoModal = ({ producto, onClose, onUpdate }) => {
               required
               min="1"
               disabled={loading}
+              aria-label="Precio del producto"
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Descripción</Form.Label>
+            <Form.Label htmlFor="editar-descripcion">Descripción</Form.Label>
             <Form.Control
+              id="editar-descripcion"
               as="textarea"
               rows={3}
               name="descripcion"
@@ -125,24 +143,27 @@ const EditarProductoModal = ({ producto, onClose, onUpdate }) => {
               onChange={handleChange}
               required
               disabled={loading}
+              aria-label="Descripción del producto"
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Nombre de Imagen</Form.Label>
+            <Form.Label htmlFor="editar-imagen">Nombre de Imagen</Form.Label>
             <Form.Control
+              id="editar-imagen"
               type="text"
               name="imagen"
               value={formData.imagen}
               onChange={handleChange}
               disabled={loading}
+              aria-label="Nombre del archivo de imagen"
             />
             <Form.Text className="text-muted">
-              Asegúrate que la imagen exista en la carpeta public/img/
+              Asegúrate que la imagen exista en la carpeta <code>public/img/</code>
             </Form.Text>
           </Form.Group>
 
-          <Button variant="primary" type="submit" disabled={loading}>
+          <Button variant="primary" type="submit" disabled={loading} aria-label="Guardar cambios del producto">
             {loading ? "Guardando..." : "Guardar Cambios"}
           </Button>
         </Form>

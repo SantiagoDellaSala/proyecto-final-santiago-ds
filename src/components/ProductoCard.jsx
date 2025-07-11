@@ -9,7 +9,7 @@ const ProductoCard = ({ producto }) => {
       <Card.Img
         variant="top"
         src={`/img/${producto.imagen || "default.jpg"}`}
-        alt={producto.nombre}
+        alt={`Imagen del producto ${producto.nombre}`}
         style={{
           height: "180px",
           objectFit: "contain",
@@ -23,7 +23,11 @@ const ProductoCard = ({ producto }) => {
           {producto.descripcion}
         </Card.Text>
         <Card.Text className="fw-bold">${producto.precio.toFixed(2)}</Card.Text>
-        <Button variant="primary" onClick={() => agregarAlCarrito(producto)}>
+        <Button
+          variant="primary"
+          onClick={() => agregarAlCarrito(producto)}
+          aria-label={`Agregar ${producto.nombre} al carrito`}
+        >
           Agregar al carrito
         </Button>
       </Card.Body>
