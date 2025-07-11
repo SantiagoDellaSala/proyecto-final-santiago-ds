@@ -5,7 +5,6 @@ const ProtectedRoute = ({ children }) => {
   const { usuario } = useAuth();
 
   if (!usuario) {
-    // No autenticado → redirigir a login
     return <Navigate to="/login" replace />;
   }
 

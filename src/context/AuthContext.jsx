@@ -7,7 +7,6 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
 
-  // Al iniciar, cargar usuario desde localStorage si existe
   useEffect(() => {
     const usuarioStorage = localStorage.getItem("usuario");
     if (usuarioStorage) {

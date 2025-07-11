@@ -51,7 +51,6 @@ const Carrito = () => {
         </div>
       ) : (
         <>
-          {/* Vista de escritorio */}
           <div className="d-none d-md-block">
             <Card className="p-3 shadow-sm">
               <Table responsive hover className="align-middle">
@@ -131,7 +130,6 @@ const Carrito = () => {
             </Card>
           </div>
 
-          {/* Vista móvil */}
           <div className="d-block d-md-none">
             <Row className="g-3">
               {carrito.map((item) => (

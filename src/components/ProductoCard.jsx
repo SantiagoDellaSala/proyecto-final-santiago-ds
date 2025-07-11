@@ -1,6 +1,6 @@
 import { Card, Button } from "react-bootstrap";
 import { useCarrito } from "../context/CarritoContext";
-import "./ProductoCard.css"; // Importamos los estilos personalizados
+import "./ProductoCard.css";
 
 const ProductoCard = ({ producto }) => {
   const { agregarAlCarrito } = useCarrito();
@@ -20,8 +20,8 @@ const ProductoCard = ({ producto }) => {
           {producto.descripcion}
         </Card.Text>
         <Card.Text className="fw-bold fs-5 text-primary">
-  ${producto.precio.toLocaleString("es-AR")}
-</Card.Text>
+          ${producto.precio.toLocaleString("es-AR")}
+        </Card.Text>
 
         <Button
           variant="dark"

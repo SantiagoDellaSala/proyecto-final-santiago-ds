@@ -1,12 +1,67 @@
-# React + Vite
+# 🛒 Xnegg Shop - Tienda Gamer de Componentes
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Xnegg Shop** es una tienda online ficticia de componentes de PC, desarrollada con React + Vite como proyecto final. Permite explorar productos, agregarlos al carrito, y ofrece un panel de administración para gestionar el catálogo.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologías utilizadas
 
-## Expanding the ESLint configuration
+- React + Vite
+- React Router DOM
+- React Bootstrap
+- React Toastify
+- React Icons
+- Styled Components
+- JSON Server (mock API)
+- Helmet para SEO básico
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📸 Funcionalidades
+
+- ✅ Catálogo de productos con búsqueda en tiempo real y paginación.
+- ✅ Vista responsiva para móviles, tablets y escritorio.
+- ✅ Carrito de compras con cantidad ajustable y total calculado.
+- ✅ Panel de administrador (acceso visible al estar logueado) para:
+  - Crear nuevos productos
+  - Editar productos existentes
+  - Eliminar productos
+- ✅ Validaciones de formulario.
+- ✅ Estilos modernos con animaciones suaves y diseño profesional.
+- ✅ SEO básico implementado con React Helmet.
+
+---
+
+## 🛠️ Instalación y uso
+
+git clone https://github.com/SantiagoDellaSala/proyecto-final-santiago-ds.git
+cd proyecto-final-santiago-ds
+npm install
+npm run dev
+
+---
+
+🧪 Pruebas de compatibilidad
+✔️ Probado en navegadores modernos (Chrome, Firefox, Edge)
+
+✔️ Adaptado para pantallas pequeñas, medianas y grandes
+
+✔️ Tiempo de carga optimizado con Vite
+
+✔️ Experiencia de usuario cuidada: animaciones, retroalimentación visual, accesibilidad básica
+
+---
+
+🧼 Optimización del código
+Componentes reutilizables (ProductoCard, EditarProductoModal, etc.)
+
+Contextos para carrito y autenticación
+
+Separación lógica de vistas y componentes
+
+Código limpio y comentado
+
+---
+
+👤 Autor
+Desarrollado por Santiago Della Sala como proyecto final de React.
