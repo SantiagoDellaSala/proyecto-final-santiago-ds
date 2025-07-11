@@ -1,30 +1,31 @@
 import { Card, Button } from "react-bootstrap";
 import { useCarrito } from "../context/CarritoContext";
+import "./ProductoCard.css"; // Importamos los estilos personalizados
 
 const ProductoCard = ({ producto }) => {
   const { agregarAlCarrito } = useCarrito();
 
   return (
-    <Card className="mb-4 shadow-sm" style={{ maxWidth: "300px" }}>
+    <Card className="producto-card h-100">
       <Card.Img
         variant="top"
         src={`/img/${producto.imagen || "default.jpg"}`}
         alt={`Imagen del producto ${producto.nombre}`}
-        style={{
-          height: "180px",
-          objectFit: "contain",
-          backgroundColor: "#f8f9fa",
-        }}
+        className="producto-img"
       />
 
-      <Card.Body>
-        <Card.Title>{producto.nombre}</Card.Title>
-        <Card.Text style={{ minHeight: "60px", color: "#555" }}>
+      <Card.Body className="d-flex flex-column">
+        <Card.Title className="fw-semibold">{producto.nombre}</Card.Title>
+        <Card.Text className="producto-descripcion flex-grow-1">
           {producto.descripcion}
         </Card.Text>
-        <Card.Text className="fw-bold">${producto.precio.toFixed(2)}</Card.Text>
+        <Card.Text className="fw-bold fs-5 text-primary">
+  ${producto.precio.toLocaleString("es-AR")}
+</Card.Text>
+
         <Button
-          variant="primary"
+          variant="dark"
+          className="mt-2"
           onClick={() => agregarAlCarrito(producto)}
           aria-label={`Agregar ${producto.nombre} al carrito`}
         >

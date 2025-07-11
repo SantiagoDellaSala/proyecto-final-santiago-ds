@@ -120,7 +120,7 @@ const AdminDashboard = () => {
                     {prod.nombre}
                   </Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
-                    ${prod.precio.toFixed(2)}
+                    ${prod.precio.toLocaleString("es-AR")}
                   </Card.Subtitle>
                   <Card.Text
                     style={{

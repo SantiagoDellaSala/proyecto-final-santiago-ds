@@ -1,3 +1,88 @@
 {
-  "productos": []
+  "productos": [
+    {
+      "id": "d43e",
+      "nombre": "Monitor Samsung",
+      "precio": 789990,
+      "descripcion": "Monitor 29\" Samsung Curvo Gamer",
+      "imagen": "producto_1.jpg"
+    },
+    {
+      "id": "6202",
+      "nombre": "Monitor Phillips 26\"",
+      "precio": 699990,
+      "descripcion": "Monitor Phillips 26\" HD Gamer No Curvo",
+      "imagen": "producto_2.jpg"
+    },
+    {
+      "id": "8d95",
+      "nombre": "Monitor Noblex Gamer 27\"",
+      "precio": 569990,
+      "descripcion": "Monitor Gamer Noblex 27 Pulgadas HD",
+      "imagen": "producto_3.jpg"
+    },
+    {
+      "id": "465c",
+      "nombre": "Fuente Gamer Sentey GS-80+ Plus",
+      "precio": 79990,
+      "descripcion": "Con la fuente de alimentación Sentey HBP700-GS podrás asegurar la corriente continua y estable.",
+      "imagen": "producto_4.jpg"
+    },
+    {
+      "id": "43f2",
+      "nombre": "Fuente PC Gamer 500w Gamemax RGB",
+      "precio": 59990,
+      "descripcion": "Fuente Gamemax VP-500 500W 80 Plus Bronze",
+      "imagen": "producto_5.webp"
+    },
+    {
+      "id": "67bf",
+      "nombre": "Fuente Gamer Thermaltake Tr2 600W",
+      "precio": 61990,
+      "descripcion": "Fuente Gamer Thermaltake Tr2 600W",
+      "imagen": "producto_6.jpg"
+    },
+    {
+      "id": "c5e6",
+      "nombre": "Memoria Ram Gamer Kingston Ddr4 16gb 3600mhz",
+      "precio": 109990,
+      "descripcion": "Memoria Ram Gamer Kingston Ddr4 16gb 3600mhz Rgb Fury",
+      "imagen": "producto_7.webp"
+    },
+    {
+      "id": "ac11",
+      "nombre": "Memoria Ram Gamer Pc 8gb Rgb Hyperx",
+      "precio": 99990,
+      "descripcion": "Memoria Ram Gamer Pc 8gb Rgb Hyperx Fury Ddr4 2666mhz",
+      "imagen": "producto_8.webp"
+    },
+    {
+      "id": "b510",
+      "nombre": "Memoria Ram Adata Xpg Spectrix D60 Rgb",
+      "precio": 69990,
+      "descripcion": "Memoria Ram Adata Xpg Spectrix D60 Rgb 8gb Ddr4 3200",
+      "imagen": "producto_9.jpg"
+    },
+    {
+      "id": "94c2",
+      "nombre": "Procesador Amd Ryzen 7 5700G 4.6 Ghz",
+      "precio": 219990,
+      "descripcion": "Procesador Amd Ryzen 7 5700G 4.6 Ghz - AM4",
+      "imagen": "producto_10.jpeg"
+    },
+    {
+      "id": "0613",
+      "nombre": "MICRO INTEL CORE I7 12700",
+      "precio": 215990,
+      "descripcion": "MICRO INTEL CORE I7 12700 C/VIDEO C/COOLER + BARATO Q 12700F",
+      "imagen": "producto_11.jpg"
+    },
+    {
+      "id": "9c20",
+      "nombre": "Procesador Intel Core Alder Lake I9 12900k",
+      "precio": 702990,
+      "descripcion": "Procesador Intel Core Alder Lake I9 12900k Sin Cooler S1700",
+      "imagen": "producto_12.jpg"
+    }
+  ]
 }

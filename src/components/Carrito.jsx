@@ -81,7 +81,7 @@ const Carrito = () => {
                         />
                       </td>
                       <td>{item.nombre}</td>
-                      <td>${item.precio.toFixed(2)}</td>
+                      <td>${item.precio.toLocaleString("es-AR")}</td>
                       <td>
                         <ButtonGroup size="sm" aria-label="Modificar cantidad">
                           <Button
@@ -103,7 +103,7 @@ const Carrito = () => {
                           </Button>
                         </ButtonGroup>
                       </td>
-                      <td>${(item.precio * item.cantidad).toFixed(2)}</td>
+                      <td>${(item.precio * item.cantidad).toLocaleString("es-AR")}</td>
                       <td>
                         <Button
                           variant="danger"
@@ -126,7 +126,7 @@ const Carrito = () => {
                 >
                   Vaciar carrito
                 </Button>
-                <h4>Total: ${calcularTotal().toFixed(2)}</h4>
+                <h4>Total: ${calcularTotal().toLocaleString("es-AR")}</h4>
               </div>
             </Card>
           </div>
@@ -152,10 +152,10 @@ const Carrito = () => {
                         <div className="flex-grow-1">
                           <Card.Title>{item.nombre}</Card.Title>
                           <Card.Text className="mb-1">
-                            Precio: ${item.precio.toFixed(2)}
+                            Precio: ${item.precio.toLocaleString("es-AR")}
                           </Card.Text>
                           <Card.Text className="mb-1">
-                            Subtotal: ${(item.precio * item.cantidad).toFixed(2)}
+                            Subtotal: ${(item.precio * item.cantidad).toLocaleString("es-AR")}
                           </Card.Text>
                           <ButtonGroup size="sm" className="mb-2" aria-label="Modificar cantidad">
                             <Button
@@ -193,7 +193,7 @@ const Carrito = () => {
                 </Col>
               ))}
               <Col xs={12} className="text-center mt-4">
-                <h5>Total: ${calcularTotal().toFixed(2)}</h5>
+                <h5>Total: ${calcularTotal().toLocaleString("es-AR")}</h5>
                 <Button
                   variant="outline-danger"
                   onClick={handleVaciarCarrito}
