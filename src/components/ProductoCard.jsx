@@ -19,13 +19,13 @@ const ProductoCard = ({ producto }) => {
         <Card.Text className="producto-descripcion flex-grow-1">
           {producto.descripcion}
         </Card.Text>
-        <Card.Text className="fw-bold fs-5 text-primary">
+        <Card.Text className="card-price fw-bold fs-5">
           ${producto.precio.toLocaleString("es-AR")}
         </Card.Text>
 
         <Button
           variant="dark"
-          className="mt-2"
+          className="agregar-carrito mt-2"
           onClick={() => agregarAlCarrito(producto)}
           aria-label={`Agregar ${producto.nombre} al carrito`}
         >
